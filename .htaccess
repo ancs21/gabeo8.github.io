@@ -1,2 +1,3 @@
-  RewriteCond %{HTTP:CF-Visitor} '"scheme":"http"'
-  RewriteRule ^(.*)$ https://gabeo.me/$1 [L]
+  if ($http_cf_visitor ~ '{"scheme":"http"}') {
+    return 301 https://gabeo.me$request_uri;
+  }
